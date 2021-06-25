@@ -1,0 +1,8 @@
+---
+// syntax: javascript
+tags: [ exception ]
+---
+
+/* Initialize Awake exception framework routine */
+let allExceptionConditionsAreFalse = recipes.exceptions.lib.allExceptionConditionsAreFalseFor
+   "models.c2.modelRefId";
