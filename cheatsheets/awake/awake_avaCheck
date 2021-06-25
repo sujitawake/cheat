@@ -1,0 +1,26 @@
+---
+// syntax: javascript
+tags: [ ava, eaql ]
+---
+
+# Call AVA (Domain/IP likely to be malicious) against custom conditions 
+util.db.getActivities [] (
+   allExceptionConditionsAreFalse &&
+      (
+         any activity.http.request.header.value (\x -> x like r/^(chrome-extension:\/\/)/) &&
+         recipes.protocols.http.successful_request
+      )
+   ) |> util.filter.byAvaDestinationAllAtOnce
+   recipes.destinations.domains.ava.likely_bad
+|> workbench.stream.ofActivitiesToWorkbenchResults
+
+# Call AVA (Domain/IP malicious with high confidence) against custom conditions 
+util.db.getActivities [] (
+   allExceptionConditionsAreFalse &&
+      (
+         any activity.http.request.header.value (\x -> x like r/^(chrome-extension:\/\/)/) &&
+         recipes.protocols.http.successful_request
+      )
+   ) |> util.filter.byAvaDestinationAllAtOnce
+   recipes.destinations.domains.ava.likely_bad
+|> workbench.stream.ofActivitiesToWorkbenchResults
